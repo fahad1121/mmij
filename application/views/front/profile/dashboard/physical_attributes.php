@@ -22,12 +22,12 @@
                 <table class="table table-xs table-profile table-responsive-sm table-striped table-bordered table-slick">
                     <tbody>
                         <tr>
-                            <td class="td-label">
-                                <span>my height</span>
-                            </td>
-                            <td>
-                                <?=$get_member[0]->height?>
-                            </td>
+<!--                            <td class="td-label">-->
+<!--                                <span>my height</span>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                --><?//=$get_member[0]->height?>
+<!--                            </td>-->
                             <td class="td-label">
                                 <span>I Exercise</span>
                             </td>
@@ -85,14 +85,14 @@
         <div class='clearfix'></div>
         <form id="form_physical_attributes" class="form-default" role="form">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group has-feedback">
-                        <label for="height" class="text-uppercase c-gray-light"><?php echo translate('height')?></label>
-                        <input type="text" class="form-control no-resize height_mask" aria-describedby="text-feet" name="height" value="<?=$get_member[0]->height?>">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
+<!--                <div class="col-md-4">-->
+<!--                    <div class="form-group has-feedback">-->
+<!--                        <label for="height" class="text-uppercase c-gray-light">--><?php //echo translate('height')?><!--</label>-->
+<!--                        <input type="text" class="form-control no-resize height_mask" aria-describedby="text-feet" name="height" value="--><?//=$get_member[0]->height?><!--">-->
+<!--                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>-->
+<!--                        <div class="help-block with-errors"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="col-md-4">
                     <div class="form-group has-feedback">
                         <label for="exercise" class="text-uppercase c-gray-light">I EXERCISE</label>

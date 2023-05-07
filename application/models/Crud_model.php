@@ -41,7 +41,11 @@ class Crud_model extends CI_Model
             return $this->db->get_where($type, array('type' => $type_name))->row()->$field;
         }
     }
-
+    function getEducationTitle($type,$id){
+        if ($id != '') {
+            return $this->db->get_where($type, array('education_id' => $id))->row()->name;
+        }
+    }
     /////////Filter One/////////////
     function filter_one($table, $type, $value)
     {

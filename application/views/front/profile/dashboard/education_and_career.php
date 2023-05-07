@@ -21,44 +21,44 @@
                 <table class="table table-xs table-profile table-striped table-bordered table-responsive-sm">
                     <tbody>
                         <tr>
-                            <td class="td-label">
-                                <span>Education</span>
-                            </td>
-                            <td>
-							<?=$this->Crud_model->get_type_name_by_id('education', $education_and_career_data[0]['highest_education'])?>
-
-                            </td>
+<!--                            <td class="td-label">-->
+<!--                                <span>Education</span>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--							--><?//=$this->Crud_model->get_type_name_by_id('education', $education_and_career_data[0]['highest_education'])?>
+<!---->
+<!--                            </td>-->
 							<td class="td-label">
                                 <span>I am Employed</span>
                             </td>
                             <td>
-                                 <?=$education_and_career_data[0]['i_am_employed']?>
+                                 <?=$education_and_career_data['i_am_employed']?>
                             </td>
-                            <td class="td-label">
-                                <span>My Job Title</span>
-                            </td>
-                            <td>
-                                 <?=$education_and_career_data[0]['my_job_title']?>
-                            </td>
+<!--                            <td class="td-label">-->
+<!--                                <span>My Job Title</span>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                 --><?//=$education_and_career_data['my_job_title']?>
+<!--                            </td>-->
                         </tr>
                         <tr>
 							<td class="td-label">
                                 <span>My Company's Name</span>
                             </td>
                             <td>
-                                 <?=$education_and_career_data[0]['my_company_name']?>
+                                 <?=$education_and_career_data['my_company_name']?>
                             </td>
 							<td class="td-label">
                                 <span><?php echo translate('annual_income')?></span>
                             </td>
                             <td>
-                                <?=$this->Crud_model->get_type_name_by_id('annual_income', $education_and_career_data[0]['annual_income'])?>
+                                <?=$this->Crud_model->get_type_name_by_id('annual_income', $education_and_career_data['annual_income'])?>
                             </td>
 							<td class="td-label">
                                 <span>Years Worked</span>
                             </td>
                             <td>
-                                <?=$education_and_career_data[0]['years_worked']?>
+                                <?=$education_and_career_data['years_worked']?>
                             </td>
 
                         </tr>
@@ -67,16 +67,15 @@
                                 <span>I am Self Employed</span>
                             </td>
                             <td>
-							<?=$this->Crud_model->get_type_name_by_id('yes_no', $education_and_career_data[0]['self_employed'])?>
+							<?=$this->Crud_model->get_type_name_by_id('yes_no', $education_and_career_data['self_employed'])?>
                             </td>
 							
 							<td class="td-label">
                                 <span>Years Owned</span>
                             </td>
                             <td>
-                                 <?=$education_and_career_data[0]['years_owned']?>
+                                 <?=$education_and_career_data['years_owned']?>
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
@@ -98,38 +97,38 @@
         <div class='clearfix'></div>
         <form id="form_education_and_career" class="form-default" role="form">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group has-feedback">
-                        <label for="highest_education" class="text-uppercase c-gray-light">Education</label>
-                         <?php
-                            echo $this->Crud_model->select_html('education', 'highest_education', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['highest_education'], '', '', '');
-                        ?>
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
+<!--                <div class="col-md-4">-->
+<!--                    <div class="form-group has-feedback">-->
+<!--                        <label for="highest_education" class="text-uppercase c-gray-light">Education</label>-->
+<!--                         --><?php
+//                            echo $this->Crud_model->select_html('education', 'highest_education', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['highest_education'], '', '', '');
+//                        ?>
+<!--                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>-->
+<!--                        <div class="help-block with-errors"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="col-md-4">
                     <div class="form-group has-feedback">
                         <label for="i_am_employed" class="text-uppercase c-gray-light">I am Employed</label>
-                        <input type="text" class="form-control no-resize" name="i_am_employed" value="<?=$education_and_career_data[0]['i_am_employed']?>">
+                        <input type="text" class="form-control no-resize" name="i_am_employed" value="<?=$education_and_career_data['i_am_employed']?>">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
-				<div class="col-md-4">
-                    <div class="form-group has-feedback">
-                        <label for="my_job_title" class="text-uppercase c-gray-light">My Job Title</label>
-                        <input type="text" class="form-control no-resize" name="my_job_title" value="<?=$education_and_career_data[0]['my_job_title']?>">
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
+<!--				<div class="col-md-4">-->
+<!--                    <div class="form-group has-feedback">-->
+<!--                        <label for="my_job_title" class="text-uppercase c-gray-light">My Job Title</label>-->
+<!--                        <input type="text" class="form-control no-resize" name="my_job_title" value="--><?//=$education_and_career_data['my_job_title']?><!--">-->
+<!--                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>-->
+<!--                        <div class="help-block with-errors"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <div class="row">
 			<div class="col-md-4">
                     <div class="form-group has-feedback">
                         <label for="my_company_name" class="text-uppercase c-gray-light">My Company's Name</label>
-                        <input type="text" class="form-control no-resize" name="my_company_name" value="<?=$education_and_career_data[0]['my_company_name']?>">
+                        <input type="text" class="form-control no-resize" name="my_company_name" value="<?=$education_and_career_data['my_company_name']?>">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -139,7 +138,7 @@
                         <label for="annual_income" class="text-uppercase c-gray-light"><?php echo translate('annual_income')?> </label>
 
                          <?php
-                            echo $this->Crud_model->select_html('annual_income', 'annual_income', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['annual_income'], '', '', '');
+                            echo $this->Crud_model->select_html('annual_income', 'annual_income', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data['annual_income'], '', '', '');
                         ?>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
@@ -149,7 +148,7 @@
                     <div class="form-group has-feedback">
                         <label for="years_worked" class="text-uppercase c-gray-light">Years Worked</label>
 						<?php
-                            echo $this->Crud_model->select_html('years', 'years_worked', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['years_worked'], '', '', '');
+                            echo $this->Crud_model->select_html('years', 'years_worked', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data['years_worked'], '', '', '');
                         ?>
 
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -162,7 +161,7 @@
                     <div class="form-group has-feedback">
                         <label for="self_employed" class="text-uppercase c-gray-light">I am Self Employed</label>
 						<?php
-                            echo $this->Crud_model->select_html('yes_no', 'self_employed', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['self_employed'], '', '', '');
+                            echo $this->Crud_model->select_html('yes_no', 'self_employed', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data['self_employed'], '', '', '');
                         ?>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
@@ -183,7 +182,7 @@
                     <div class="form-group has-feedback">
                         <label for="years_owned" class="text-uppercase c-gray-light">Years Owned</label>
 						<?php
-                            echo $this->Crud_model->select_html('years', 'years_owned', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['years_owned'], '', '', '');
+                            echo $this->Crud_model->select_html('years', 'years_owned', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data['years_owned'], '', '', '');
                         ?>
 
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

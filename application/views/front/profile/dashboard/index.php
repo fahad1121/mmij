@@ -78,46 +78,6 @@
 				<div class="col-lg-4">
 					<?php include_once APPPATH . 'views/front/profile/left_panel.php'; ?>
 				</div>
-				<!--
-                    <div class="visible_xs align-items-center">
-                        <div class="container mb-4 text-center">
-                            <ul class="inline-links inline-links--style-3">
-                                <li>
-                                    <a href="<?= base_url() ?>home/profile" class="c-base-1 xs_nav_item m_profile m_nav m_nav_active">
-                                        <i class="fa fa-user"></i> <?php echo translate('profile') ?>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="c-base-1 xs_nav_item m_my_interests m_nav" onclick="profile_load('my_interests', 'no')">
-                                        <i class="fa fa-heart"></i> <?php echo translate('my_interests') ?>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="c-base-1 xs_nav_item m_short_list m_nav" onclick="profile_load('short_list', 'no')">
-                                        <i class="fa fa-list-ul"></i> <?php echo translate('shortlist') ?>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="c-base-1 xs_nav_item m_followed_users m_nav" onclick="profile_load('followed_users', 'no')">
-                                        <i class="fa fa-star"></i> <?php echo translate('followed_users') ?>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="c-base-1 xs_nav_item m_messaging m_nav" onclick="profile_load('messaging', 'no')">
-                                        <i class="fa fa-comments-o"></i> <?php echo translate('messaging') ?>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="c-base-1 xs_nav_item m_ignored_list m_nav" onclick="profile_load('ignored_list', 'no')">
-                                        <i class="fa fa-ban"></i> <?php echo translate('ignored_list') ?>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    -->
-
 				<div class="col-lg-8">
 					<div class="widget">
 						<div class="card z-depth-2-top" id="profile_load">
@@ -147,7 +107,6 @@
 								<?php
 								}
 								?>
-
 								<?php
 								if ($this->db->get_where('frontend_settings', array('type' => 'education_and_career'))->row()->value == "yes") {
 								?>
@@ -178,116 +137,17 @@
 								<?php
 								if ($this->db->get_where('frontend_settings', array('type' => 'partner_expectation'))->row()->value == "yes") {
 								?>
-									<div id="section_partner_expectation">
+                                    <div id="section_partner_expectation" style="max-width: 712px;position: relative;left: 8px;">
 										<?php include_once 'partner_expectation.php'; ?>
 									</div>
 								<?php
 								}
 								?>
-								<!--
-                                    <?php
-									/*
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'present_address'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_present_address">
-                                            <?php include_once 'present_address.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-
-
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'language'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_language">
-                                            <?php include_once 'language.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'hobbies_and_interests'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_hobbies_and_interest">
-                                            <?php include_once 'hobbies_and_interest.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'personal_attitude_and_behavior'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_personal_attitude_and_behavior">
-                                            <?php include_once 'personal_attitude_and_behavior.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'residency_information'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_residency_information">
-                                            <?php include_once 'residency_information.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'spiritual_and_social_background'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_spiritual_and_social_background">
-                                            <?php include_once 'spiritual_and_social_background.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'life_style'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_life_style">
-                                            <?php include_once 'life_style.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'permanent_address'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_permanent_address">
-                                            <?php include_once 'permanent_address.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'family_information'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_family_info">
-                                            <?php include_once 'family_info.php'; ?>
-                                        </div>
-                                    <?php
-                                        }
-                                    ?>
-
-                                    <?php
-                                        if ($this->db->get_where('frontend_settings', array('type' => 'partner_expectation'))->row()->value == "yes") {
-                                    ?>
-                                        <div id="section_partner_expectation">
-                                            <?php include_once 'partner_expectation.php'; ?>
-                                        </div>
-                                    <?php
-                                        }*/
-									?>
-									-->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<?php //endforeach
-			?>
 		</div>
 	</div>
 </section>

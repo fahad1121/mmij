@@ -1,7 +1,14 @@
 <?php
     $basic_info = $this->Crud_model->get_type_name_by_id('member', $this->session->userdata['member_id'], 'basic_info');
     $basic_info_data = json_decode($basic_info, true);
+    $educ_and_carr_info = $this->Crud_model->get_type_name_by_id('member', $this->session->userdata['member_id'], 'education_and_career');
+    $educ_and_carr_info_data = json_decode($educ_and_carr_info, true);
 ?>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="<?= base_url()?>template/front/css/intlTelInput.css" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="<?= base_url()?>template/front/js/intlTelInput-jquery.min.js"></script>
+
 <div class="feature feature--boxed-border feature--bg-1 pt-3 pb-0 pl-3 pr-3 mb-3 border_top2x">
     <div id="info_basic_info">
         <div class="card-inner-title-wrapper pt-0">
@@ -78,7 +85,7 @@
                                 <?=date('m/d/Y', $get_member[0]->date_of_birth)?>
                             </td>
 							<td class="td-label">
-                                <span>Residence</span>
+                                <span>Current Location</span>
                             </td>
                             <td>
 								<?=$this->Crud_model->get_type_name_by_id('country', $basic_info_data[0]['residence'])?>
@@ -103,10 +110,10 @@
                         </tr>
 						<tr>
 							<td class="td-label">
-                                <span>Grew Up</span>
+                                <span>Education</span>
                             </td>
                             <td>
-								<?=$this->Crud_model->get_type_name_by_id('country', $basic_info_data[0]['grew_up']);?>
+								<?=$this->Crud_model->getEducationTitle('education', $educ_and_carr_info_data['highest_education']);?>
                             </td>
 							<td class="td-label">
                                 <span>Like To Marry</span>
@@ -160,8 +167,28 @@
                             </td>
 
                         </tr>
-
-
+                        <tr>
+							<td class="td-label">
+                                <span>Ethnic Group</span>
+                            </td>
+                            <td>
+							<?=$get_member[0]->ethnic_group?>
+							</td>
+                            <td class="td-label">
+                                <span>my height</span>
+                            </td>
+                            <td>
+                                <?=$get_member[0]->height?>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="td-label">
+                            <span>My Job Title</span>
+                        </td>
+                        <td>
+                            <?=$educ_and_carr_info_data['my_job_title'];?>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -253,13 +280,10 @@
                 </div>
                <div class="col-md-6">
                     <div class="form-group has-feedback">
-                        <label for="residence" class="text-uppercase c-gray-light">Residence</label>
+                        <label for="residence" class="text-uppercase c-gray-light">Current Location</label>
 						<?php
-
-                                echo $this->Crud_model->select_html('country', 'residence', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $basic_info_data[0]['residence'], '', '', '');
-
-                            ?>
-
+                        echo $this->Crud_model->select_html('country', 'residence', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $basic_info_data[0]['residence'], '', '', '');
+                        ?>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -290,12 +314,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group has-feedback">
-                        <label for="grew_up" class="text-uppercase c-gray-light">Grew Up</label>
+                        <label for="highest_education" class="text-uppercase c-gray-light">Education</label>
                         <?php
-
-                                echo $this->Crud_model->select_html('country', 'grew_up', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $basic_info_data[0]['grew_up'], '', '', '');
-
-                            ?>
+                        echo $this->Crud_model->select_html('education', 'highest_education', 'name', 'edit', 'form-control form-control-sm selectpicker', json_decode($get_member[0]->education_and_career)->highest_education, '', '', '');
+                        ?>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -316,7 +338,8 @@
                     <div class="form-group has-feedback">
                         <label for="mobile" class="text-uppercase c-gray-light">Phone</label>
                         <input type="hidden" name="old_mobile" value="<?=$get_member[0]->mobile?>">
-                        <input type="text" class="form-control no-resize" aria-describedby="text-feet" name="mobile" value="<?=$get_member[0]->mobile?>">
+                        <input type="hidden" id="utilJsPath" value="<?= base_url()?>template/front/js/utils.js">
+                        <input type="text" class="form-control no-resize" id="phone_number" aria-describedby="text-feet" name="mobile" value="<?=$get_member[0]->mobile?>">
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -376,12 +399,59 @@
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <label for="profile_made" class="text-uppercase c-gray-light">Ethnic Group</label>
+                        <?php
+                        $selectItems = array(
+                            'African','Albanian','Algerian','Amerindian','American','Andorran','Arab','Argentinian','Armenian','Australian','Azerbaijani',
+                            'Bahraini','Balochi','Belarusian','Belgian','Bengali','Black African','Black Caribbean','Bosnian','British','Brazilian','Bulgarian',
+                            'Caribbean','Chinese','Circassian','Colombian','Cuban','Curaciónian','Dutch','Egyptian','English','Estonian','Ethiopian','European',
+                            'Filipino','French','German','Greek','Gypsy','Haitian','Hawaiian','Herzegovinian','Hispanic','Hungarian','Indian','Indonesian','Iraqi',
+                            'Irish','Italian','Japanese','Jordanian','Jamaican','Kenyan','Korean','Kuwaiti','Latino','Lebanese','Lithuanian','Luxembourger',
+                            'Macedonian','Maltese','Mexican','Moroccan','Montenegrin','Muhajirs','Nepali','Norwegian','Pakistani','Pashtun (Pathan)','Palestinian',
+                            'Persian','Polish','Polynesian','Portuguese','Puerto Rican','Punjabi','Romanian','Russian','Samoan','Saraiki','Scandinavian','Scottish',
+                            'Serbian','Sindhi','Sri Lankan','Spanish','Swiss','Syrian','Tunisian','Turkish','Ukrainian','Venezuelan','Vietnamese','Welsh','White','Other'
+                        );
+                        ?>
+                        <select name="ethnic_group" class="form-control-sm form-control form-control-sm selectpicker select2Menu">
+                            <?php foreach($selectItems as $item){?>
+                            <option value="<?= $item;?>"
+                            <?php
+                                if($get_member[0]->ethnic_group == $item)
+                                    echo ' selected';?>
+                            ><?php echo $item;?></option>
+                            <?php } ?>
+                        </select>
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <label for="height" class="text-uppercase c-gray-light"><?php echo translate('height')?></label>
+                        <input type="text" class="form-control no-resize height_mask" aria-describedby="text-feet" name="height" value="<?=$get_member[0]->height?>">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-feedback">
+                        <label for="my_job_title" class="text-uppercase c-gray-light">My Job Title</label>
+                        <input type="text" class="form-control no-resize" name="my_job_title" value="<?=$educ_and_carr_info_data['my_job_title']?>">
+                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
 </div>
 <script>
     $(document).ready(function(){
+            $('.select2Menu').select2({
+                width: '100%'
+            });
         $(".phone_mask").inputmask({
             mask: "999-999-9999",
             greedy: false,
@@ -391,5 +461,6 @@
                 }
             }
         });
+        $("#phone_number").intlTelInput();
     });
 </script>
