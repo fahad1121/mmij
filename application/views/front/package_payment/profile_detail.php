@@ -35,14 +35,14 @@
 	<link id="stylesheet" type="text/css" href="<?php echo base_url() ?>template/front/css/global-style-pink.css" rel="stylesheet" media="screen">
 	<!-- Custom style - Remove if not necessary -->
 	<link type="text/css" href="<?php echo base_url() ?>template/front/css/custom-style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?= base_url()?>template/front/css/intlTelInput.css" />
 	<!-- Favicon -->
 
 
 	<!-- SCRIPTS -->
 	<!-- Core -->
 	<script src="<?php echo base_url() ?>template/front/vendor/jquery/jquery.min.js"></script>
-
-
 	<script>
 		// script for tab steps
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
@@ -621,7 +621,7 @@
 																									<?= date('d/m/Y', $get_member[0]->date_of_birth) ?>
 																								</td>
 																								<td class="td-label">
-																									<span>Residence</span>
+																									<span>Current Location</span>
 																								</td>
 																								<td>
 																									<?= $this->Crud_model->get_type_name_by_id('country', $basic_info_data[0]['residence']) ?>
@@ -644,12 +644,12 @@
 
 																							</tr>
 																							<tr>
-																								<td class="td-label">
-																									<span>Grew Up</span>
-																								</td>
-																								<td>
-																									<?= $this->Crud_model->get_type_name_by_id('country', $basic_info_data[0]['grew_up']); ?>
-																								</td>
+                                                                                                <td class="td-label">
+                                                                                                    <span>Education </span>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <?=$this->Crud_model->getEducationTitle('education', $educa_and_career_for_highest_education);?>
+                                                                                                </td>
 																								<td class="td-label">
 																									<span>Like To Marry</span>
 																								</td>
@@ -796,7 +796,7 @@
 																					</div>
 																					<div class="col-md-6">
 																						<div class="form-group has-feedback">
-																							<label for="residence" class="text-uppercase c-gray-light">Residence</label>
+																							<label for="residence" class="text-uppercase c-gray-light">CURRENT LOCATION</label>
 																							<?php
 
 																							echo $this->Crud_model->select_html('country', 'residence', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $basic_info_data[0]['residence'], '', '', '');
@@ -831,18 +831,16 @@
 																					</div>
 																				</div>
 																				<div class="row">
-																					<div class="col-md-6">
-																						<div class="form-group has-feedback">
-																							<label for="grew_up" class="text-uppercase c-gray-light">Grew Up</label>
-																							<?php
-
-																							echo $this->Crud_model->select_html('country', 'grew_up', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $basic_info_data[0]['grew_up'], '', '', '');
-
-																							?>
-																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																							<div class="help-block with-errors"></div>
-																						</div>
-																					</div>
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="highest_education" class="text-uppercase c-gray-light">Education</label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('education', 'highest_education', 'name', 'edit', 'form-control form-control-sm selectpicker', $educa_and_career_for_highest_education, '', '', '');
+                                                                                            ?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
 																					<div class="col-md-6">
 																						<div class="form-group has-feedback">
 																							<label for="like_to_marry" class="text-uppercase c-gray-light">Like To Marry</label>
@@ -859,7 +857,7 @@
 																						<div class="form-group has-feedback">
 																							<label for="mobile" class="text-uppercase c-gray-light">Phone</label>
 																							<input type="hidden" name="old_mobile" value="<?= $get_member[0]->mobile ?>">
-																							<input type="text" class="form-control no-resize" aria-describedby="text-feet" name="mobile" value="<?= $get_member[0]->mobile ?>">
+																							<input type="text" class="form-control no-resize" id="phone_numberForStartEdit" aria-describedby="text-feet" name="mobile" value="<?= $get_member[0]->mobile ?>">
 																							<!--  <input type="text" class="form-control no-resize" name="mobile" value="<?= $get_member[0]->mobile ?>">-->
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
@@ -921,6 +919,54 @@
 																						</div>
 																					</div>
 																				</div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="profile_made" class="text-uppercase c-gray-light">Ethnic Group</label>
+                                                                                            <?php
+                                                                                            $selectItems = array(
+                                                                                                'African','Albanian','Algerian','Amerindian','American','Andorran','Arab','Argentinian','Armenian','Australian','Azerbaijani',
+                                                                                                'Bahraini','Balochi','Belarusian','Belgian','Bengali','Black African','Black Caribbean','Bosnian','British','Brazilian','Bulgarian',
+                                                                                                'Caribbean','Chinese','Circassian','Colombian','Cuban','Curaciónian','Dutch','Egyptian','English','Estonian','Ethiopian','European',
+                                                                                                'Filipino','French','German','Greek','Gypsy','Haitian','Hawaiian','Herzegovinian','Hispanic','Hungarian','Indian','Indonesian','Iraqi',
+                                                                                                'Irish','Italian','Japanese','Jordanian','Jamaican','Kenyan','Korean','Kuwaiti','Latino','Lebanese','Lithuanian','Luxembourger',
+                                                                                                'Macedonian','Maltese','Mexican','Moroccan','Montenegrin','Muhajirs','Nepali','Norwegian','Pakistani','Pashtun (Pathan)','Palestinian',
+                                                                                                'Persian','Polish','Polynesian','Portuguese','Puerto Rican','Punjabi','Romanian','Russian','Samoan','Saraiki','Scandinavian','Scottish',
+                                                                                                'Serbian','Sindhi','Sri Lankan','Spanish','Swiss','Syrian','Tunisian','Turkish','Ukrainian','Venezuelan','Vietnamese','Welsh','White','Other'
+                                                                                            );
+                                                                                            ?>
+                                                                                            <select name="ethnic_group" class="form-control-sm form-control form-control-sm selectpicker select2Menu">
+                                                                                                <?php foreach($selectItems as $item){?>
+                                                                                                    <option value="<?= $item;?>"
+                                                                                                        <?php
+                                                                                                        if($get_member[0]->ethnic_group == $item)
+                                                                                                            echo ' selected';?>
+                                                                                                    ><?php echo $item;?></option>
+                                                                                                <?php } ?>
+                                                                                            </select>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="height" class="text-uppercase c-gray-light"><?php echo translate('height')?></label>
+                                                                                            <input type="text" class="form-control no-resize height_mask" aria-describedby="text-feet" name="height" value="<?=$get_member[0]->height?>">
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="my_job_title" class="text-uppercase c-gray-light">My Job Title</label>
+                                                                                            <input type="text" class="form-control no-resize" name="my_job_title" value="<?= $education_and_career_data['my_job_title'] ?>">
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
 																			</form>
 																		</div>
 																	</div>
@@ -959,12 +1005,12 @@
 																					<table class="table table-xs table-profile table-responsive-sm table-striped table-bordered table-slick">
 																						<tbody>
 																							<tr>
-																								<td class="td-label">
-																									<span>my height</span>
-																								</td>
-																								<td>
-																									<?= $get_member[0]->height ?>
-																								</td>
+<!--																								<td class="td-label">-->
+<!--																									<span>my height</span>-->
+<!--																								</td>-->
+<!--																								<td>-->
+<!--																									--><?//= $get_member[0]->height ?>
+<!--																								</td>-->
 																								<td class="td-label">
 																									<span>I Exercise</span>
 																								</td>
@@ -1022,14 +1068,14 @@
 																			<div class='clearfix'></div>
 																			<form id="form_physical_attributes" class="form-default" role="form">
 																				<div class="row">
-																					<div class="col-md-4">
-																						<div class="form-group has-feedback">
-																							<label for="height" class="text-uppercase c-gray-light"><?php echo translate('height') ?></label>
-																							<input type="text" class="form-control no-resize height_mask" aria-describedby="text-feet" name="height" value="<?= $get_member[0]->height ?>">
-																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																							<div class="help-block with-errors"></div>
-																						</div>
-																					</div>
+<!--																					<div class="col-md-4">-->
+<!--																						<div class="form-group has-feedback">-->
+<!--																							<label for="height" class="text-uppercase c-gray-light">--><?php //echo translate('height') ?><!--</label>-->
+<!--																							<input type="text" class="form-control no-resize height_mask" aria-describedby="text-feet" name="height" value="--><?//= $get_member[0]->height ?><!--">-->
+<!--																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>-->
+<!--																							<div class="help-block with-errors"></div>-->
+<!--																						</div>-->
+<!--																					</div>-->
 																					<div class="col-md-4">
 																						<div class="form-group has-feedback">
 																							<label for="exercise" class="text-uppercase c-gray-light">I EXERCISE</label>
@@ -1122,44 +1168,44 @@
 																					<table class="table table-xs table-profile table-responsive-sm table-striped table-bordered table-slick">
 																						<tbody>
 																							<tr>
-																								<td class="td-label">
-																									<span>Education</span>
-																								</td>
-																								<td>
-																									<?= $this->Crud_model->get_type_name_by_id('education', $education_and_career_data[0]['highest_education']) ?>
-
-																								</td>
+<!--																								<td class="td-label">-->
+<!--																									<span>Education</span>-->
+<!--																								</td>-->
+<!--																								<td>-->
+<!--																									--><?//= $this->Crud_model->get_type_name_by_id('education', $education_and_career_data[0]['highest_education']) ?>
+<!---->
+<!--																								</td>-->
 																								<td class="td-label">
 																									<span>I am Employed</span>
 																								</td>
 																								<td>
-																									<?= $education_and_career_data[0]['i_am_employed'] ?>
+																									<?= $education_and_career_data['i_am_employed'] ?>
 																								</td>
-																								<td class="td-label">
-																									<span>My Job Title</span>
-																								</td>
-																								<td>
-																									<?= $education_and_career_data[0]['my_job_title'] ?>
-																								</td>
+<!--																								<td class="td-label">-->
+<!--																									<span>My Job Title</span>-->
+<!--																								</td>-->
+<!--																								<td>-->
+<!--																									--><?//= $education_and_career_data['my_job_title'] ?>
+<!--																								</td>-->
 																							</tr>
 																							<tr>
 																								<td class="td-label">
 																									<span>My Company's Name</span>
 																								</td>
 																								<td>
-																									<?= $education_and_career_data[0]['my_company_name'] ?>
+																									<?= $education_and_career_data['my_company_name'] ?>
 																								</td>
 																								<td class="td-label">
 																									<span><?php echo translate('annual_income') ?></span>
 																								</td>
 																								<td>
-																									<?= $this->Crud_model->get_type_name_by_id('annual_income', $education_and_career_data[0]['annual_income']) ?>
+																									<?= $this->Crud_model->get_type_name_by_id('annual_income', $education_and_career_data['annual_income']) ?>
 																								</td>
 																								<td class="td-label">
 																									<span>Years Worked</span>
 																								</td>
 																								<td>
-																									<?= $education_and_career_data[0]['years_worked'] ?>
+																									<?= $education_and_career_data['years_worked'] ?>
 																								</td>
 
 																							</tr>
@@ -1168,13 +1214,13 @@
 																									<span>I am Self Employed</span>
 																								</td>
 																								<td>
-																									<?= $this->Crud_model->get_type_name_by_id('yes_no', $education_and_career_data[0]['self_employed']) ?>
+																									<?= $this->Crud_model->get_type_name_by_id('yes_no', $education_and_career_data['self_employed']) ?>
 																								</td>
 																								<td class="td-label">
 																									<span>Years Owned</span>
 																								</td>
 																								<td>
-																									<?= $education_and_career_data[0]['years_owned'] ?>
+																									<?= $education_and_career_data['years_owned'] ?>
 																								</td>
 
 																							</tr>
@@ -1198,38 +1244,38 @@
 																			<div class='clearfix'></div>
 																			<form id="form_education_and_career" class="form-default" role="form">
 																				<div class="row">
-																					<div class="col-md-4">
-																						<div class="form-group has-feedback">
-																							<label for="highest_education" class="text-uppercase c-gray-light">Education</label>
-																							<?php
-																							echo $this->Crud_model->select_html('education', 'highest_education', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['highest_education'], '', '', '');
-																							?>
-																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																							<div class="help-block with-errors"></div>
-																						</div>
-																					</div>
+<!--																					<div class="col-md-4">-->
+<!--																						<div class="form-group has-feedback">-->
+<!--																							<label for="highest_education" class="text-uppercase c-gray-light">Education</label>-->
+<!--																							--><?php
+//																							echo $this->Crud_model->select_html('education', 'highest_education', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['highest_education'], '', '', '');
+//																							?>
+<!--																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>-->
+<!--																							<div class="help-block with-errors"></div>-->
+<!--																						</div>-->
+<!--																					</div>-->
 																					<div class="col-md-4">
 																						<div class="form-group has-feedback">
 																							<label for="i_am_employed" class="text-uppercase c-gray-light">I am Employed</label>
-																							<input type="text" class="form-control no-resize" name="i_am_employed" value="<?= $education_and_career_data[0]['i_am_employed'] ?>">
+																							<input type="text" class="form-control no-resize" name="i_am_employed" value="<?= $education_and_career_data['i_am_employed'] ?>">
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
 																						</div>
 																					</div>
-																					<div class="col-md-4">
-																						<div class="form-group has-feedback">
-																							<label for="my_job_title" class="text-uppercase c-gray-light">My Job Title</label>
-																							<input type="text" class="form-control no-resize" name="my_job_title" value="<?= $education_and_career_data[0]['my_job_title'] ?>">
-																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																							<div class="help-block with-errors"></div>
-																						</div>
-																					</div>
+<!--																					<div class="col-md-4">-->
+<!--																						<div class="form-group has-feedback">-->
+<!--																							<label for="my_job_title" class="text-uppercase c-gray-light">My Job Title</label>-->
+<!--																							<input type="text" class="form-control no-resize" name="my_job_title" value="--><?//= $education_and_career_data[0]['my_job_title'] ?><!--">-->
+<!--																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>-->
+<!--																							<div class="help-block with-errors"></div>-->
+<!--																						</div>-->
+<!--																					</div>-->
 																				</div>
 																				<div class="row">
 																					<div class="col-md-4">
 																						<div class="form-group has-feedback">
 																							<label for="my_company_name" class="text-uppercase c-gray-light">My Company's Name</label>
-																							<input type="text" class="form-control no-resize" name="my_company_name" value="<?= $education_and_career_data[0]['my_company_name'] ?>">
+																							<input type="text" class="form-control no-resize" name="my_company_name" value="<?= $education_and_career_data['my_company_name'] ?>">
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
 																						</div>
@@ -1239,7 +1285,7 @@
 																							<label for="annual_income" class="text-uppercase c-gray-light"><?php echo translate('annual_income') ?> </label>
 
 																							<?php
-																							echo $this->Crud_model->select_html('annual_income', 'annual_income', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['annual_income'], '', '', '');
+																							echo $this->Crud_model->select_html('annual_income', 'annual_income', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data['annual_income'], '', '', '');
 																							?>
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
@@ -1249,7 +1295,7 @@
 																						<div class="form-group has-feedback">
 																							<label for="years_worked" class="text-uppercase c-gray-light">Years Worked</label>
 																							<?php
-																							echo $this->Crud_model->select_html('years', 'years_worked', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['years_worked'], '', '', '');
+																							echo $this->Crud_model->select_html('years', 'years_worked', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data['years_worked'], '', '', '');
 																							?>
 
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -1262,7 +1308,7 @@
 																						<div class="form-group has-feedback">
 																							<label for="self_employed" class="text-uppercase c-gray-light">I am Self Employed</label>
 																							<?php
-																							echo $this->Crud_model->select_html('yes_no', 'self_employed', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['self_employed'], '', '', '');
+																							echo $this->Crud_model->select_html('yes_no', 'self_employed', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data['self_employed'], '', '', '');
 																							?>
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
@@ -1283,7 +1329,7 @@
 																						<div class="form-group has-feedback">
 																							<label for="years_owned" class="text-uppercase c-gray-light">Years Owned</label>
 																							<?php
-																							echo $this->Crud_model->select_html('years', 'years_owned', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data[0]['years_owned'], '', '', '');
+																							echo $this->Crud_model->select_html('years', 'years_owned', 'name', 'edit', 'form-control form-control-sm selectpicker', $education_and_career_data['years_owned'], '', '', '');
 																							?>
 
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -1301,7 +1347,7 @@
 																		<div id="info_astronomic_information">
 																			<div class="card-inner-title-wrapper pt-0">
 																				<h3 class="card-inner-title pull-left">
-																					MY RELIGION
+																					RELIGION
 																				</h3>
 																				<div class="pull-right">
 
@@ -1318,7 +1364,7 @@
 																						<tbody>
 																							<tr>
 																								<td class="td-label">
-																									As a Muslim, I am?</span>
+                                                                                                    Religious Practice
 																								</td>
 																								<td>
 																									<?= $this->Crud_model->get_type_name_by_id('muslim_i_am', $astronomic_information_data[0]['muslim_i_am']) ?>
@@ -1355,7 +1401,7 @@
 
 																								</td>
 																								<td class="td-label">
-																									<span>Do I Eat Halal</span>
+																									<span>Halal Diet</span>
 																								</td>
 																								<td>
 																									<?= $this->Crud_model->get_type_name_by_id('yes_no', $astronomic_information_data[0]['do_i_eat_halal']) ?>
@@ -1388,7 +1434,7 @@
 																		<div id="edit_astronomic_information" style="display: none;">
 																			<div class="card-inner-title-wrapper pt-0">
 																				<h3 class="card-inner-title pull-left">
-																					MY RELIGION
+																					RELIGION
 																				</h3>
 																				<div class="pull-right">
 																					<button type="button" class="btn btn-success btn-sm btn-icon-only btn-shadow" onclick="save_section('astronomic_information')"><i class="ion-checkmark"></i></button>
@@ -1401,7 +1447,7 @@
 																				<div class="row">
 																					<div class="col-md-4">
 																						<div class="form-group has-feedback">
-																							<label for="muslim_i_am" class="text-uppercase c-gray-light">As a Muslim, I am?</label>
+																							<label for="muslim_i_am" class="text-uppercase c-gray-light">Religious Practice</label>
 																							<?php
 																							echo $this->Crud_model->select_html('muslim_i_am', 'muslim_i_am', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['muslim_i_am'], '', '', '');
 																							?>
@@ -1435,8 +1481,14 @@
 																						<div class="form-group has-feedback">
 																							<label for="do_i_fast" class="text-uppercase c-gray-light">Do I Keep Fast?</label>
 																							<?php
-																							echo $this->Crud_model->select_html('yes_no', 'do_i_fast', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['do_i_fast'], '', '', '');
+//																							echo $this->Crud_model->select_html('yes_no', 'do_i_fast', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['do_i_fast'], '', '', '');
 																							?>
+                                                                                            <select name="do_i_fast" onchange="(this.value,this)" class="form-control-sm form-control form-control-sm selectpicker">
+                                                                                                <option value="">Choose one</option>
+                                                                                                <option value="1" <?= ($astronomic_information_data[0]['do_i_fast'] == 1) ? 'selected' : ''?>>Yes</option>
+                                                                                                <option value="2" <?= ($astronomic_information_data[0]['do_i_fast'] == 2) ? 'selected' : ''?>>No</option>
+                                                                                                <option value="3" <?= ($astronomic_information_data[0]['do_i_fast'] == 3) ? 'selected' : ''?>>Sometime</option>
+                                                                                            </select>
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
 																						</div>
@@ -1445,18 +1497,30 @@
 																						<div class="form-group has-feedback">
 																							<label for="do_i_pray" class="text-uppercase c-gray-light">Do I Pray?</label>
 																							<?php
-																							echo $this->Crud_model->select_html('yes_no', 'do_i_pray', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['do_i_pray'], '', '', '');
+																							//echo $this->Crud_model->select_html('yes_no', 'do_i_pray', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['do_i_pray'], '', '', '');
 																							?>
+                                                                                            <select name="do_i_pray" onchange="(this.value,this)" class="form-control-sm form-control form-control-sm selectpicker">
+                                                                                                <option value="">Choose one</option>
+                                                                                                <option value="1" <?= ($astronomic_information_data[0]['do_i_pray'] == 1) ? 'selected' : ''?>>Yes</option>
+                                                                                                <option value="2" <?= ($astronomic_information_data[0]['do_i_pray'] == 2) ? 'selected' : ''?>>No</option>
+                                                                                                <option value="3" <?= ($astronomic_information_data[0]['do_i_pray'] == 3) ? 'selected' : ''?>>Sometime</option>
+                                                                                            </select>
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
 																						</div>
 																					</div>
 																					<div class="col-md-4">
 																						<div class="form-group has-feedback">
-																							<label for="do_i_eat_halal" class="text-uppercase c-gray-light">Do I Eat Halal?</label>
+																							<label for="do_i_eat_halal" class="text-uppercase c-gray-light">Halal Diet</label>
 																							<?php
-																							echo $this->Crud_model->select_html('yes_no', 'do_i_eat_halal', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['do_i_eat_halal'], '', '', '');
+																							//echo $this->Crud_model->select_html('yes_no', 'do_i_eat_halal', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['do_i_eat_halal'], '', '', '');
 																							?>
+                                                                                            <select name="do_i_eat_halal" onchange="(this.value,this)" class="form-control-sm form-control form-control-sm selectpicker">
+                                                                                                <option value="">Choose one</option>
+                                                                                                <option value="1" <?= ($astronomic_information_data[0]['do_i_eat_halal'] == 1) ? 'selected' : ''?>>Yes</option>
+                                                                                                <option value="2" <?= ($astronomic_information_data[0]['do_i_eat_halal'] == 2) ? 'selected' : ''?>>No</option>
+                                                                                                <option value="3" <?= ($astronomic_information_data[0]['do_i_eat_halal'] == 3) ? 'selected' : ''?>>Sometime</option>
+                                                                                            </select>
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
 																						</div>
@@ -1466,21 +1530,37 @@
 																				<div class="row">
 																					<div class="col-md-4">
 																						<div class="form-group has-feedback">
-																							<label for="women_only" class="text-uppercase c-gray-light">For Women Only: Do I Wear Hiijab</label>
+																							<label for="women_only" class="text-uppercase c-gray-light">WOMEN (I WEAR)</label>
 																							<?php
-																							echo $this->Crud_model->select_html('yes_no', 'women_only', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['women_only'], '', '', '');
+																							//echo $this->Crud_model->select_html('yes_no', 'women_only', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['women_only'], '', '', '');
 																							?>
-
+                                                                                            <select name="women_only" class="form-control">
+                                                                                                <option >Select Item</option>
+                                                                                                <option value="1" <?= ($astronomic_information_data[0]['women_only'] == 1) ? 'selected' : ''?>>Hijab</option>
+                                                                                                <option value="2" <?= ($astronomic_information_data[0]['women_only'] == 2) ? 'selected' : ''?>>Jilbab</option>
+                                                                                                <option value="3" <?= ($astronomic_information_data[0]['women_only'] == 3) ? 'selected' : ''?>>Abiya</option>
+                                                                                                <option value="4" <?= ($astronomic_information_data[0]['women_only'] == 4) ? 'selected' : ''?>>Niqab</option>
+                                                                                                <option value="5" <?= ($astronomic_information_data[0]['women_only'] == 5) ? 'selected' : ''?>>Gloves</option>
+                                                                                                <option value="6" <?= ($astronomic_information_data[0]['women_only'] == 6) ? 'selected' : ''?>>No Religious Dress</option>
+                                                                                            </select>
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
 																						</div>
 																					</div>
 																					<div class="col-md-4">
 																						<div class="form-group has-feedback">
-																							<label for="wife_wear" class="text-uppercase c-gray-light">For Men Only: I Prefer My Wife To Wear</label>
+																							<label for="wife_wear" class="text-uppercase c-gray-light"> Men (I WEAR)</label>
 																							<?php
-																							echo $this->Crud_model->select_html('wife_wear', 'wife_wear', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['wife_wear'], '', '', '');
+																							//echo $this->Crud_model->select_html('wife_wear', 'wife_wear', 'name', 'edit', 'form-control form-control-sm selectpicker', $astronomic_information_data[0]['wife_wear'], '', '', '');
 																							?>
+                                                                                            <select name="wife_wear" class="form-control">
+                                                                                                <option>Select Item</option>
+                                                                                                <option value="1" <?= ($astronomic_information_data[0]['wife_wear'] == 1) ? 'selected' : ''?>>Beard</option>
+                                                                                                <option value="2" <?= ($astronomic_information_data[0]['wife_wear'] == 2) ? 'selected' : ''?>>No Beard</option>
+                                                                                                <option value="3" <?= ($astronomic_information_data[0]['wife_wear'] == 3) ? 'selected' : ''?>>Muslim Hat</option>
+                                                                                                <option value="4" <?= ($astronomic_information_data[0]['wife_wear'] == 4) ? 'selected' : ''?>>Muslim Juba</option>
+                                                                                                <option value="5" <?= ($astronomic_information_data[0]['wife_wear'] == 5) ? 'selected' : ''?>>No Religious Dress</option>
+                                                                                            </select>
 																							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 																							<div class="help-block with-errors"></div>
 																						</div>
@@ -1684,367 +1764,367 @@
 																		</form>
 																	</div>
 																</div>
-															</div>
-															<div id="section_partner_expectation">
-																<div class="feature feature--boxed-border feature--bg-1 pt-3 pb-0 pl-3 pr-3 mb-3 border_top2x">
-																	<div id="info_partner_expectation">
-																		<div class="card-inner-title-wrapper pt-0">
-																			<h3 class="card-inner-title pull-left">
-																				PARTNER EXPECTATION
-																			</h3>
-																			<div class="pull-right">
-																				<button type="button" class="btn btn-base-1 btn-sm btn-icon-only btn-shadow mb-1" onclick="edit_section('partner_expectation')">
-																					<i class="ion-edit"></i>
-																					Edit
-																				</button>
-																			</div>
-																		</div>
-																		<div class="table-full-width">
-																			<div class="table-full-width">
-																				<table class="table table-xs table-profile table-responsive-sm table-striped table-bordered table-slick">
-																					<tbody>
-																						<tr>
-																							<td class="td-label">
-																								<span>Sect</span>
-																							</td>
-																							<td>
-																								<?php if ($this->Crud_model->get_type_name_by_id('sect', $partner_expectation_data[0]['partner_caste']) == "") {
-																									echo "I Dont Care";
-																								} else {
-																									echo $this->Crud_model->get_type_name_by_id('sect', $partner_expectation_data[0]['partner_caste']);
-																								} ?>
+                                                                <div id="section_partner_expectation" >
+                                                                    <div class="feature feature--boxed-border feature--bg-1 pt-3 pb-0 pl-3 pr-3 mb-3 border_top2x">
+                                                                        <div id="info_partner_expectation">
+                                                                            <div class="card-inner-title-wrapper pt-0">
+                                                                                <h3 class="card-inner-title pull-left">
+                                                                                    PARTNER EXPECTATION
+                                                                                </h3>
+                                                                                <div class="pull-right">
+                                                                                    <button type="button" class="btn btn-base-1 btn-sm btn-icon-only btn-shadow mb-1" onclick="edit_section('partner_expectation')">
+                                                                                        <i class="ion-edit"></i>
+                                                                                        Edit
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="table-full-width">
+                                                                                <div class="table-full-width">
+                                                                                    <table class="table table-xs table-profile table-responsive-sm table-striped table-bordered table-slick">
+                                                                                        <tbody>
+                                                                                        <tr>
+                                                                                            <td class="td-label">
+                                                                                                <span>Sect</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?php if ($this->Crud_model->get_type_name_by_id('sect', $partner_expectation_data[0]['partner_caste']) == "") {
+                                                                                                    echo "I Dont Care";
+                                                                                                } else {
+                                                                                                    echo $this->Crud_model->get_type_name_by_id('sect', $partner_expectation_data[0]['partner_caste']);
+                                                                                                } ?>
 
-																							</td>
-																							<td class="td-label">
-																								<span><?php echo translate('age') ?></span>
-																							</td>
-																							<td>
-																								<?= $this->Crud_model->get_type_name_by_id('age_range', $partner_expectation_data[0]['partner_age']) ?>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span><?php echo translate('age') ?></span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?= $this->Crud_model->get_type_name_by_id('age_range', $partner_expectation_data[0]['partner_age']) ?>
 
-																							</td>
-																							<td class="td-label">
-																								<span><?php echo translate('height') ?></span>
-																							</td>
-																							<td>
-																								<?= $partner_expectation_data[0]['partner_height'] ?>
-																							</td>
-
-
-																						</tr>
-																						<tr>
-																							<td class="td-label">
-																								<span><?php echo translate('marital_status') ?></span>
-																							</td>
-																							<td>
-																								<?= $this->Crud_model->get_type_name_by_id('marital_status', $partner_expectation_data[0]['partner_marital_status']) ?>
-																							</td>
-																							<td class="td-label">
-																								<span><?php echo translate('profession') ?></span>
-																							</td>
-																							<td>
-																								<?php if ($this->Crud_model->get_type_name_by_id('profession', $partner_expectation_data[0]['partner_profession']) == "") {
-																									echo "I Dont Care";
-																								} else {
-																									echo $this->Crud_model->get_type_name_by_id('profession', $partner_expectation_data[0]['partner_profession']);
-																								} ?>
-
-																							</td>
-																							<td class="td-label">
-																								<span><?php echo translate('education') ?></span>
-																							</td>
-																							<td>
-																								<?php if ($partner_expectation_data[0]['partner_education'] == "") {
-																									echo "I Dont Care";
-																								} else {
-																									echo $this->Crud_model->get_type_name_by_id('education', $partner_expectation_data[0]['partner_education']);
-																								} ?>
-
-																							</td>
-
-																						</tr>
-
-																						<tr>
-																							<td class="td-label">
-																								<span>Nationality</span>
-																							</td>
-																							<td>
-																								<?php if ($this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_nationality']) == "") {
-																									echo "I Dont Care";
-																								} else {
-																									echo $this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_nationality']);
-																								} ?>
-																							</td>
-																							<td class="td-label">
-																								<span>Residence</span>
-																							</td>
-																							<td>
-																								<?php if ($this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_country_of_residence']) == "") {
-																									echo "I Dont Care";
-																								} else {
-																									echo $this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_country_of_residence']);
-																								} ?>
-																							</td>
-																							<td class="td-label">
-																								<span>Resident Status</span>
-																							</td>
-																							<td>
-																								<?php if ($this->Crud_model->get_type_name_by_id('resident_status', $partner_expectation_data[0]['partner_resident_status']) == "") {
-																									echo "I Dont Care";
-																								} else {
-																									echo $this->Crud_model->get_type_name_by_id('resident_status', $partner_expectation_data[0]['partner_resident_status']);
-																								} ?>
-
-																							</td>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span><?php echo translate('height') ?></span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?= $partner_expectation_data[0]['partner_height'] ?>
+                                                                                            </td>
 
 
-																						</tr>
-																						<tr>
-																							<td class="td-label">
-																								<span>Disabilities</span>
-																							</td>
-																							<td>
-																								<?= $this->Crud_model->get_type_name_by_id('yes_no', $partner_expectation_data[0]['partner_any_disability']) ?>
-																							</td>
-																							<td class="td-label">
-																								<span>Have Children</span>
-																							</td>
-																							<td>
-																								<?= $this->Crud_model->get_type_name_by_id('yes_no', $partner_expectation_data[0]['partner_have_children']) ?>
-																							</td>
-																							<td class="td-label">
-																								<span>If Yes, How Many</span>
-																							</td>
-																							<td>
-																								<?= $partner_expectation_data[0]['partner_children_how_many'] ?>
-																							</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td class="td-label">
+                                                                                                <span><?php echo translate('marital_status') ?></span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?= $this->Crud_model->get_type_name_by_id('marital_status', $partner_expectation_data[0]['partner_marital_status']) ?>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span><?php echo translate('profession') ?></span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?php if ($this->Crud_model->get_type_name_by_id('profession', $partner_expectation_data[0]['partner_profession']) == "") {
+                                                                                                    echo "I Dont Care";
+                                                                                                } else {
+                                                                                                    echo $this->Crud_model->get_type_name_by_id('profession', $partner_expectation_data[0]['partner_profession']);
+                                                                                                } ?>
+
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span><?php echo translate('education') ?></span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?php if ($partner_expectation_data[0]['partner_education'] == "") {
+                                                                                                    echo "I Dont Care";
+                                                                                                } else {
+                                                                                                    echo $this->Crud_model->get_type_name_by_id('education', $partner_expectation_data[0]['partner_education']);
+                                                                                                } ?>
+
+                                                                                            </td>
+
+                                                                                        </tr>
+
+                                                                                        <tr>
+                                                                                            <td class="td-label">
+                                                                                                <span>Nationality</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?php if ($this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_nationality']) == "") {
+                                                                                                    echo "I Dont Care";
+                                                                                                } else {
+                                                                                                    echo $this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_nationality']);
+                                                                                                } ?>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span>CURRENT LOCATION</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?php if ($this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_country_of_residence']) == "") {
+                                                                                                    echo "I Dont Care";
+                                                                                                } else {
+                                                                                                    echo $this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_country_of_residence']);
+                                                                                                } ?>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span>Resident Status</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?php if ($this->Crud_model->get_type_name_by_id('resident_status', $partner_expectation_data[0]['partner_resident_status']) == "") {
+                                                                                                    echo "I Dont Care";
+                                                                                                } else {
+                                                                                                    echo $this->Crud_model->get_type_name_by_id('resident_status', $partner_expectation_data[0]['partner_resident_status']);
+                                                                                                } ?>
+
+                                                                                            </td>
 
 
-																						</tr>
-																						<tr>
-																							<td class="td-label">
-																								<span><?php echo translate('body_type') ?></span>
-																							</td>
-																							<td>
-																								<?php if ($this->Crud_model->get_type_name_by_id('body_type', $partner_expectation_data[0]['partner_body_type']) == "") {
-																									echo "I Dont Care";
-																								} else {
-																									echo $this->Crud_model->get_type_name_by_id('body_type', $partner_expectation_data[0]['partner_body_type']);
-																								} ?>
-																							</td>
-																							<td class="td-label">
-																								<span>Born At</span>
-																							</td>
-																							<td>
-																								<?php if ($this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_born_at']) == "") {
-																									echo "I Dont Care";
-																								} else {
-																									echo $this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_born_at']);
-																								} ?>
-																							</td>
-																							<td class="td-label">
-																								<span>1st Language</span>
-																							</td>
-																							<td>
-																								<?= $this->Crud_model->get_type_name_by_id('language', $partner_expectation_data[0]['partner_1_language']); ?>
-																							</td>
-																						</tr>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td class="td-label">
+                                                                                                <span>Disabilities</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?= $this->Crud_model->get_type_name_by_id('yes_no', $partner_expectation_data[0]['partner_any_disability']) ?>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span>Have Children</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?= $this->Crud_model->get_type_name_by_id('yes_no', $partner_expectation_data[0]['partner_have_children']) ?>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span>If Yes, How Many</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?= $partner_expectation_data[0]['partner_children_how_many'] ?>
+                                                                                            </td>
 
 
-																					</tbody>
-																				</table>
-																			</div>
-																		</div>
-																	</div>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td class="td-label">
+                                                                                                <span><?php echo translate('body_type') ?></span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?php if ($this->Crud_model->get_type_name_by_id('body_type', $partner_expectation_data[0]['partner_body_type']) == "") {
+                                                                                                    echo "I Dont Care";
+                                                                                                } else {
+                                                                                                    echo $this->Crud_model->get_type_name_by_id('body_type', $partner_expectation_data[0]['partner_body_type']);
+                                                                                                } ?>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span>Born At</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?php if ($this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_born_at']) == "") {
+                                                                                                    echo "I Dont Care";
+                                                                                                } else {
+                                                                                                    echo $this->Crud_model->get_type_name_by_id('country', $partner_expectation_data[0]['partner_born_at']);
+                                                                                                } ?>
+                                                                                            </td>
+                                                                                            <td class="td-label">
+                                                                                                <span>1st Language</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <?= $this->Crud_model->get_type_name_by_id('language', $partner_expectation_data[0]['partner_1_language']); ?>
+                                                                                            </td>
+                                                                                        </tr>
 
-																	<div id="edit_partner_expectation" style="display: none;">
-																		<div class="card-inner-title-wrapper pt-0">
-																			<h3 class="card-inner-title pull-left">
-																				PARTNER EXPECTATION
-																			</h3>
-																			<div class="pull-right">
-																				<button type="button" class="btn btn-success btn-sm btn-icon-only btn-shadow" onclick="save_section('partner_expectation')"><i class="ion-checkmark"></i></button>
-																				<button type="button" class="btn btn-danger btn-sm btn-icon-only btn-shadow" onclick="load_section('partner_expectation')"><i class="ion-close"></i></button>
-																			</div>
-																		</div>
 
-																		<div class='clearfix'></div>
-																		<form id="form_partner_expectation" class="form-default" role="form">
-																			<div class="row">
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_caste" class="text-uppercase c-gray-light">Sect</label>
-																						<?php
-																						echo $this->Crud_model->select_html('sect', 'partner_caste', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_caste'], '', '', '');
-																						?>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_age" class="text-uppercase c-gray-light"><?php echo translate('age') ?></label>
-																						<?php
-																						echo $this->Crud_model->select_html('age_range', 'partner_age', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_age'], '', '', '');
-																						?>
+                                                                        <div id="edit_partner_expectation" style="display: none;">
+                                                                            <div class="card-inner-title-wrapper pt-0">
+                                                                                <h3 class="card-inner-title pull-left">
+                                                                                    PARTNER EXPECTATION
+                                                                                </h3>
+                                                                                <div class="pull-right">
+                                                                                    <button type="button" class="btn btn-success btn-sm btn-icon-only btn-shadow" onclick="save_section('partner_expectation')"><i class="ion-checkmark"></i></button>
+                                                                                    <button type="button" class="btn btn-danger btn-sm btn-icon-only btn-shadow" onclick="load_section('partner_expectation')"><i class="ion-close"></i></button>
+                                                                                </div>
+                                                                            </div>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_height" class="text-uppercase c-gray-light"><?php echo translate('height') ?></label>
-																						<input type="text" class="form-control no-resize height_mask" aria-describedby="text-feet" name="partner_height" value="<?= $partner_expectation_data[0]['partner_height'] ?>">
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
+                                                                            <div class='clearfix'></div>
+                                                                            <form id="form_partner_expectation" class="form-default" role="form">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_caste" class="text-uppercase c-gray-light">Sect</label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('sect', 'partner_caste', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_caste'], '', '', '');
+                                                                                            ?>
 
-																			</div>
-																			<div class="row">
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_marital_status" class="text-uppercase c-gray-light"><?php echo translate('marital_status') ?></label>
-																						<?php
-																						echo $this->Crud_model->select_html('marital_status', 'partner_marital_status', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_marital_status'], '', '', '');
-																						?>
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_profession" class="text-uppercase c-gray-light"><?php echo translate('profession') ?></label>
-																						<?php
-																						echo $this->Crud_model->select_html('profession', 'partner_profession', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_profession'], '', '', '');
-																						?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_age" class="text-uppercase c-gray-light"><?php echo translate('age') ?></label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('age_range', 'partner_age', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_age'], '', '', '');
+                                                                                            ?>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_education" class="text-uppercase c-gray-light"><?php echo translate('education') ?></label>
-																						<?php
-																						echo $this->Crud_model->select_html('education', 'partner_education', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_education'], '', '', '');
-																						?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_height" class="text-uppercase c-gray-light"><?php echo translate('height') ?></label>
+                                                                                            <input type="text" class="form-control no-resize height_mask" aria-describedby="text-feet" name="partner_height" value="<?= $partner_expectation_data[0]['partner_height'] ?>">
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_marital_status" class="text-uppercase c-gray-light"><?php echo translate('marital_status') ?></label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('marital_status', 'partner_marital_status', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_marital_status'], '', '', '');
+                                                                                            ?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_profession" class="text-uppercase c-gray-light"><?php echo translate('profession') ?></label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('profession', 'partner_profession', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_profession'], '', '', '');
+                                                                                            ?>
 
-																			</div>
-																			<div class="row">
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_nationality" class="text-uppercase c-gray-light">Nationality</label>
-																						<?php
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_education" class="text-uppercase c-gray-light"><?php echo translate('education') ?></label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('education', 'partner_education', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_education'], '', '', '');
+                                                                                            ?>
 
-																						echo $this->Crud_model->select_html('country', 'partner_nationality', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $partner_expectation_data[0]['partner_nationality'], '', '', '');
-																						?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_country_of_residence" class="text-uppercase c-gray-light"><?php echo translate('country_of_residence') ?></label>
-																						<?php
-																						echo $this->Crud_model->select_html('country', 'partner_country_of_residence', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_country_of_residence'], '', '', '');
-																						?>
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_resident_status" class="text-uppercase c-gray-light">Resident Status</label>
-																						<?php
-																						echo $this->Crud_model->select_html('resident_status', 'partner_resident_status', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_resident_status'], '', '', '');
-																						?>
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_nationality" class="text-uppercase c-gray-light">Nationality</label>
+                                                                                            <?php
 
-																			</div>
+                                                                                            echo $this->Crud_model->select_html('country', 'partner_nationality', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $partner_expectation_data[0]['partner_nationality'], '', '', '');
+                                                                                            ?>
 
-																			<div class="row">
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_any_disability" class="text-uppercase c-gray-light"><?php echo translate('any_disability') ?></label>
-																						<?php
-																						echo $this->Crud_model->select_html('dissablities', 'partner_any_disability', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_any_disability'], '', '', '');
-																						?>
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_have_children" class="text-uppercase c-gray-light">Have Children</label>
-																						<?php
-																						echo $this->Crud_model->select_html('yes_no', 'partner_have_children', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_have_children'], '', '', '');
-																						?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_country_of_residence" class="text-uppercase c-gray-light"><?php echo translate('country_of_residence') ?></label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('country', 'partner_country_of_residence', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_country_of_residence'], '', '', '');
+                                                                                            ?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_resident_status" class="text-uppercase c-gray-light">Resident Status</label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('resident_status', 'partner_resident_status', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_resident_status'], '', '', '');
+                                                                                            ?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_children_how_many" class="text-uppercase c-gray-light">If Yes, How Many</label>
-																						<input type="text" class="form-control no-resize" name="partner_children_how_many" value="<?= $partner_expectation_data[0]['partner_children_how_many'] ?>">
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
+                                                                                </div>
 
-																			</div>
-																			<div class="row">
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_body_type" class="text-uppercase c-gray-light"><?php echo translate('body_type') ?></label>
-																						<?php
-																						echo $this->Crud_model->select_html('body_type', 'partner_body_type', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_body_type'], '', '', '');
-																						?>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_any_disability" class="text-uppercase c-gray-light"><?php echo translate('any_disability') ?></label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('dissablities', 'partner_any_disability', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_any_disability'], '', '', '');
+                                                                                            ?>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_have_children" class="text-uppercase c-gray-light">Have Children</label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('yes_no', 'partner_have_children', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_have_children'], '', '', '');
+                                                                                            ?>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_born_at" class="text-uppercase c-gray-light">Born At</label>
-																						<?php
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_children_how_many" class="text-uppercase c-gray-light">If Yes, How Many</label>
+                                                                                            <input type="text" class="form-control no-resize" name="partner_children_how_many" value="<?= $partner_expectation_data[0]['partner_children_how_many'] ?>">
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
 
-																						echo $this->Crud_model->select_html('country', 'partner_born_at', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $partner_expectation_data[0]['partner_born_at'], '', '', '');
-																						?>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_body_type" class="text-uppercase c-gray-light"><?php echo translate('body_type') ?></label>
+                                                                                            <?php
+                                                                                            echo $this->Crud_model->select_html('body_type', 'partner_body_type', 'name', 'edit', 'form-control form-control-sm selectpicker', $partner_expectation_data[0]['partner_body_type'], '', '', '');
+                                                                                            ?>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																				<div class="col-md-4">
-																					<div class="form-group has-feedback">
-																						<label for="partner_1_language" class="text-uppercase c-gray-light">1st Language</label>
-																						<?php
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_born_at" class="text-uppercase c-gray-light">Born At</label>
+                                                                                            <?php
 
-																						echo $this->Crud_model->select_html('language', 'partner_1_language', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $partner_expectation_data[0]['partner_1_language'], '', '', '');
-																						?>
+                                                                                            echo $this->Crud_model->select_html('country', 'partner_born_at', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $partner_expectation_data[0]['partner_born_at'], '', '', '');
+                                                                                            ?>
 
-																						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-																						<div class="help-block with-errors"></div>
-																					</div>
-																				</div>
-																			</div>
-																		</form>
-																	</div>
-																</div>
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-4">
+                                                                                        <div class="form-group has-feedback">
+                                                                                            <label for="partner_1_language" class="text-uppercase c-gray-light">1st Language</label>
+                                                                                            <?php
+
+                                                                                            echo $this->Crud_model->select_html('language', 'partner_1_language', 'name', 'edit', 'form-control form-control-sm selectpicker present_state_edit', $partner_expectation_data[0]['partner_1_language'], '', '', '');
+                                                                                            ?>
+
+                                                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                                                            <div class="help-block with-errors"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 															</div>
 															<div class="feature feature--boxed-border feature--bg-1 pt-3 pb-0 pl-3 pr-3 mb-3">
 																<div class="pull-right">
@@ -2418,7 +2498,16 @@
 	<script src="<?= base_url() ?>template/front/vendor/lightgallery/js/lg-video.js"></script>
 	<!-- App JS -->
 	<script src="<?= base_url() ?>template/front/js/wpx.app.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="<?= base_url()?>template/front/js/intlTelInput-jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2Menu').select2({
+                width: '100%'
+            });
+            $("#phone_numberForStartEdit").intlTelInput();
+        });
+    </script>
 </body>
 
 </html>
