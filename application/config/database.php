@@ -85,9 +85,9 @@ $db['default'] = array(
 	//'password' => 'aminamin@1',
 //	'database' => 'matchmadeinheaven',
 	
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'mmij',
+	'username' => 'fahadbut_mmij_forDemo_db',
+	'password' => 'bCs032401113313@@',
+	'database' => 'fahadbut_mmij_db_for_demo',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

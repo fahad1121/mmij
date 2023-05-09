@@ -3313,3 +3313,211 @@ INFO - 2023-05-07 03:14:15 --> Controller Class Initialized
 INFO - 2023-05-07 03:14:15 --> File loaded: /Applications/MAMP/htdocs/mmij/application/views/front/package_payment/profile_detail.php
 INFO - 2023-05-07 03:14:15 --> Final output sent to browser
 DEBUG - 2023-05-07 03:14:15 --> Total execution time: 0.1731
+INFO - 2023-05-07 07:37:54 --> Config Class Initialized
+INFO - 2023-05-07 07:37:54 --> Hooks Class Initialized
+DEBUG - 2023-05-07 07:37:54 --> UTF-8 Support Enabled
+INFO - 2023-05-07 07:37:54 --> Utf8 Class Initialized
+INFO - 2023-05-07 07:37:54 --> URI Class Initialized
+DEBUG - 2023-05-07 07:37:54 --> No URI present. Default controller set.
+INFO - 2023-05-07 07:37:54 --> Router Class Initialized
+INFO - 2023-05-07 07:37:54 --> Output Class Initialized
+INFO - 2023-05-07 07:37:54 --> Security Class Initialized
+DEBUG - 2023-05-07 07:37:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2023-05-07 07:37:54 --> Input Class Initialized
+INFO - 2023-05-07 07:37:54 --> Language Class Initialized
+INFO - 2023-05-07 07:37:54 --> Loader Class Initialized
+INFO - 2023-05-07 07:37:54 --> Helper loaded: url_helper
+INFO - 2023-05-07 07:37:54 --> Helper loaded: file_helper
+INFO - 2023-05-07 07:37:54 --> Helper loaded: form_helper
+INFO - 2023-05-07 07:37:54 --> Helper loaded: language_helper
+INFO - 2023-05-07 07:37:54 --> Helper loaded: html_helper
+INFO - 2023-05-07 07:37:54 --> Database Driver Class Initialized
+DEBUG - 2023-05-07 07:37:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2023-05-07 07:37:54 --> Session: Class initialized using 'files' driver.
+INFO - 2023-05-07 07:37:54 --> XML-RPC Class Initialized
+INFO - 2023-05-07 07:37:54 --> Form Validation Class Initialized
+INFO - 2023-05-07 07:37:54 --> Model "Crud_model" initialized
+INFO - 2023-05-07 07:37:54 --> Model "Email_model" initialized
+INFO - 2023-05-07 07:37:54 --> Model "Payment_model" initialized
+INFO - 2023-05-07 07:37:54 --> Model "Sms_model" initialized
+INFO - 2023-05-07 07:37:54 --> Controller Class Initialized
+INFO - 2023-05-07 07:37:55 --> File loaded: /home4/fahadbut/mmij.fahadbutt.com/application/views/front/index.php
+DEBUG - 2023-05-07 07:37:55 --> Cache file written: /home4/fahadbut/mmij.fahadbutt.com/application/cache/957040a221c7ae0c0a6c2cddb73b9de5-
+INFO - 2023-05-07 07:37:55 --> Final output sent to browser
+DEBUG - 2023-05-07 07:37:55 --> Total execution time: 0.4124
+INFO - 2023-05-07 07:38:51 --> Config Class Initialized
+INFO - 2023-05-07 07:38:51 --> Hooks Class Initialized
+DEBUG - 2023-05-07 07:38:51 --> UTF-8 Support Enabled
+INFO - 2023-05-07 07:38:51 --> Utf8 Class Initialized
+INFO - 2023-05-07 07:38:51 --> URI Class Initialized
+DEBUG - 2023-05-07 07:38:51 --> No URI present. Default controller set.
+INFO - 2023-05-07 07:38:51 --> Router Class Initialized
+INFO - 2023-05-07 07:38:51 --> Output Class Initialized
+INFO - 2023-05-07 07:38:51 --> Security Class Initialized
+DEBUG - 2023-05-07 07:38:51 --> Global POST, GET and COOKIE data sanitized
+INFO - 2023-05-07 07:38:51 --> Input Class Initialized
+INFO - 2023-05-07 07:38:51 --> Language Class Initialized
+INFO - 2023-05-07 07:38:51 --> Loader Class Initialized
+INFO - 2023-05-07 07:38:51 --> Helper loaded: url_helper
+INFO - 2023-05-07 07:38:51 --> Helper loaded: file_helper
+INFO - 2023-05-07 07:38:51 --> Helper loaded: form_helper
+INFO - 2023-05-07 07:38:51 --> Helper loaded: language_helper
+INFO - 2023-05-07 07:38:51 --> Helper loaded: html_helper
+INFO - 2023-05-07 07:38:51 --> Database Driver Class Initialized
+DEBUG - 2023-05-07 07:38:51 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2023-05-07 07:38:51 --> Session: Class initialized using 'files' driver.
+INFO - 2023-05-07 07:38:51 --> XML-RPC Class Initialized
+INFO - 2023-05-07 07:38:51 --> Form Validation Class Initialized
+INFO - 2023-05-07 07:38:51 --> Model "Crud_model" initialized
+INFO - 2023-05-07 07:38:51 --> Model "Email_model" initialized
+INFO - 2023-05-07 07:38:51 --> Model "Payment_model" initialized
+INFO - 2023-05-07 07:38:51 --> Model "Sms_model" initialized
+INFO - 2023-05-07 07:38:51 --> Controller Class Initialized
+INFO - 2023-05-07 07:38:51 --> File loaded: /home4/fahadbut/mmij.fahadbutt.com/application/views/front/index.php
+DEBUG - 2023-05-07 07:38:51 --> Cache file written: /home4/fahadbut/mmij.fahadbutt.com/application/cache/f4343ad8be2c960c37612cb1010ee659-
+INFO - 2023-05-07 07:38:51 --> Final output sent to browser
+DEBUG - 2023-05-07 07:38:51 --> Total execution time: 0.4210
+INFO - 2023-05-07 07:38:54 --> Config Class Initialized
+INFO - 2023-05-07 07:38:54 --> Hooks Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> UTF-8 Support Enabled
+INFO - 2023-05-07 07:38:54 --> Utf8 Class Initialized
+INFO - 2023-05-07 07:38:54 --> URI Class Initialized
+INFO - 2023-05-07 07:38:54 --> Router Class Initialized
+INFO - 2023-05-07 07:38:54 --> Output Class Initialized
+INFO - 2023-05-07 07:38:54 --> Security Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2023-05-07 07:38:54 --> Input Class Initialized
+INFO - 2023-05-07 07:38:54 --> Language Class Initialized
+INFO - 2023-05-07 07:38:54 --> Loader Class Initialized
+INFO - 2023-05-07 07:38:54 --> Helper loaded: url_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: file_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: form_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: language_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: html_helper
+INFO - 2023-05-07 07:38:54 --> Database Driver Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2023-05-07 07:38:54 --> Session: Class initialized using 'files' driver.
+INFO - 2023-05-07 07:38:54 --> XML-RPC Class Initialized
+INFO - 2023-05-07 07:38:54 --> Form Validation Class Initialized
+INFO - 2023-05-07 07:38:54 --> Model "Crud_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Email_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Payment_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Sms_model" initialized
+INFO - 2023-05-07 07:38:54 --> Controller Class Initialized
+INFO - 2023-05-07 07:38:54 --> File loaded: /home4/fahadbut/mmij.fahadbutt.com/application/views/errors/error404.php
+INFO - 2023-05-07 07:38:54 --> Final output sent to browser
+DEBUG - 2023-05-07 07:38:54 --> Total execution time: 0.0304
+INFO - 2023-05-07 07:38:54 --> Config Class Initialized
+INFO - 2023-05-07 07:38:54 --> Hooks Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> UTF-8 Support Enabled
+INFO - 2023-05-07 07:38:54 --> Utf8 Class Initialized
+INFO - 2023-05-07 07:38:54 --> URI Class Initialized
+INFO - 2023-05-07 07:38:54 --> Router Class Initialized
+INFO - 2023-05-07 07:38:54 --> Output Class Initialized
+INFO - 2023-05-07 07:38:54 --> Config Class Initialized
+INFO - 2023-05-07 07:38:54 --> Security Class Initialized
+INFO - 2023-05-07 07:38:54 --> Hooks Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> UTF-8 Support Enabled
+DEBUG - 2023-05-07 07:38:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2023-05-07 07:38:54 --> Utf8 Class Initialized
+INFO - 2023-05-07 07:38:54 --> Input Class Initialized
+INFO - 2023-05-07 07:38:54 --> Language Class Initialized
+INFO - 2023-05-07 07:38:54 --> URI Class Initialized
+INFO - 2023-05-07 07:38:54 --> Router Class Initialized
+INFO - 2023-05-07 07:38:54 --> Output Class Initialized
+INFO - 2023-05-07 07:38:54 --> Loader Class Initialized
+INFO - 2023-05-07 07:38:54 --> Helper loaded: url_helper
+INFO - 2023-05-07 07:38:54 --> Security Class Initialized
+INFO - 2023-05-07 07:38:54 --> Helper loaded: file_helper
+DEBUG - 2023-05-07 07:38:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2023-05-07 07:38:54 --> Input Class Initialized
+INFO - 2023-05-07 07:38:54 --> Language Class Initialized
+INFO - 2023-05-07 07:38:54 --> Helper loaded: form_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: language_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: html_helper
+INFO - 2023-05-07 07:38:54 --> Loader Class Initialized
+INFO - 2023-05-07 07:38:54 --> Helper loaded: url_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: file_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: form_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: language_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: html_helper
+INFO - 2023-05-07 07:38:54 --> Database Driver Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2023-05-07 07:38:54 --> Session: Class initialized using 'files' driver.
+INFO - 2023-05-07 07:38:54 --> Database Driver Class Initialized
+INFO - 2023-05-07 07:38:54 --> XML-RPC Class Initialized
+INFO - 2023-05-07 07:38:54 --> Config Class Initialized
+INFO - 2023-05-07 07:38:54 --> Hooks Class Initialized
+INFO - 2023-05-07 07:38:54 --> Form Validation Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2023-05-07 07:38:54 --> UTF-8 Support Enabled
+INFO - 2023-05-07 07:38:54 --> Utf8 Class Initialized
+INFO - 2023-05-07 07:38:54 --> URI Class Initialized
+INFO - 2023-05-07 07:38:54 --> Model "Crud_model" initialized
+INFO - 2023-05-07 07:38:54 --> Router Class Initialized
+INFO - 2023-05-07 07:38:54 --> Model "Email_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Payment_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Sms_model" initialized
+INFO - 2023-05-07 07:38:54 --> Controller Class Initialized
+INFO - 2023-05-07 07:38:54 --> Output Class Initialized
+INFO - 2023-05-07 07:38:54 --> Session: Class initialized using 'files' driver.
+INFO - 2023-05-07 07:38:54 --> Security Class Initialized
+INFO - 2023-05-07 07:38:54 --> XML-RPC Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2023-05-07 07:38:54 --> Input Class Initialized
+INFO - 2023-05-07 07:38:54 --> Language Class Initialized
+INFO - 2023-05-07 07:38:54 --> Form Validation Class Initialized
+INFO - 2023-05-07 07:38:54 --> Model "Crud_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Email_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Payment_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Sms_model" initialized
+INFO - 2023-05-07 07:38:54 --> Controller Class Initialized
+INFO - 2023-05-07 07:38:54 --> Loader Class Initialized
+INFO - 2023-05-07 07:38:54 --> Helper loaded: url_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: file_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: form_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: language_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: html_helper
+INFO - 2023-05-07 07:38:54 --> Database Driver Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2023-05-07 07:38:54 --> Session: Class initialized using 'files' driver.
+INFO - 2023-05-07 07:38:54 --> XML-RPC Class Initialized
+INFO - 2023-05-07 07:38:54 --> Form Validation Class Initialized
+INFO - 2023-05-07 07:38:54 --> Model "Crud_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Email_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Payment_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Sms_model" initialized
+INFO - 2023-05-07 07:38:54 --> Controller Class Initialized
+INFO - 2023-05-07 07:38:54 --> File loaded: /home4/fahadbut/mmij.fahadbutt.com/application/views/front/header/top_bar_right.php
+INFO - 2023-05-07 07:38:54 --> Final output sent to browser
+DEBUG - 2023-05-07 07:38:54 --> Total execution time: 0.0685
+INFO - 2023-05-07 07:38:54 --> Config Class Initialized
+INFO - 2023-05-07 07:38:54 --> Hooks Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> UTF-8 Support Enabled
+INFO - 2023-05-07 07:38:54 --> Utf8 Class Initialized
+INFO - 2023-05-07 07:38:54 --> URI Class Initialized
+INFO - 2023-05-07 07:38:54 --> Router Class Initialized
+INFO - 2023-05-07 07:38:54 --> Output Class Initialized
+INFO - 2023-05-07 07:38:54 --> Security Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> Global POST, GET and COOKIE data sanitized
+INFO - 2023-05-07 07:38:54 --> Input Class Initialized
+INFO - 2023-05-07 07:38:54 --> Language Class Initialized
+INFO - 2023-05-07 07:38:54 --> Loader Class Initialized
+INFO - 2023-05-07 07:38:54 --> Helper loaded: url_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: file_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: form_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: language_helper
+INFO - 2023-05-07 07:38:54 --> Helper loaded: html_helper
+INFO - 2023-05-07 07:38:54 --> Database Driver Class Initialized
+DEBUG - 2023-05-07 07:38:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2023-05-07 07:38:54 --> Session: Class initialized using 'files' driver.
+INFO - 2023-05-07 07:38:54 --> XML-RPC Class Initialized
+INFO - 2023-05-07 07:38:54 --> Form Validation Class Initialized
+INFO - 2023-05-07 07:38:54 --> Model "Crud_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Email_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Payment_model" initialized
+INFO - 2023-05-07 07:38:54 --> Model "Sms_model" initialized
+INFO - 2023-05-07 07:38:54 --> Controller Class Initialized
+INFO - 2023-05-07 07:38:54 --> File loaded: /home4/fahadbut/mmij.fahadbutt.com/application/views/errors/error404.php
+INFO - 2023-05-07 07:38:54 --> Final output sent to browser
+DEBUG - 2023-05-07 07:38:54 --> Total execution time: 0.0237
