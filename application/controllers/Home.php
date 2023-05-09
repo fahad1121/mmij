@@ -2129,8 +2129,6 @@ class Home extends CI_Controller
                 $data['date_of_birth'] = strtotime($this->input->post('date_of_birth'));
                 $data['ethnic_group'] = $this->input->post('ethnic_group');
                 $data['height'] = $this->input->post('height');
-                $data['my_job_title'] = $this->input->post('my_job_title');
-
                 // ------------------------------------Basic Info------------------------------------ //
                 $basic_info[] = array(
                     'residence' => $this->input->post('residence'),
@@ -2158,6 +2156,7 @@ class Home extends CI_Controller
 
                 $dataForJson = json_decode($getEducationAndCareerJson, true);
                 $dataForJson['highest_education'] = $this->input->post('highest_education');
+                $dataForJson['my_job_title'] = $this->input->post('my_job_title');
                 $json = json_encode($dataForJson);
 
                 $data['education_and_career'] = $json;
@@ -4028,6 +4027,8 @@ class Home extends CI_Controller
     function profile_detail()
     {
         $page_data['get_member'] = $this->db->get_where("member", array("member_id" => $this->session->userdata('member_id')))->result();
+        $page_data['educa_and_career_for_highest_education'] = json_decode($page_data['get_member'][0]->education_and_career)->highest_education;
+//        echo '<pre>';print_r($page_data['educa_and_career_for_highest_education']);die;
         $page_data['get_member_gallery_items'] = $this->db->get_where("gallery_items", array("member_id" => $this->session->userdata('member_id')))->result();
         if ($this->session->flashdata('alert') == "edit") {
             $page_data['success_alert'] = translate("you_have_successfully_edited_your_profile!");
@@ -4054,7 +4055,6 @@ class Home extends CI_Controller
         }
 
         $isProfileCompleted = $this->Crud_model->get_type_name_by_id('member', $this->session->userdata['member_id'], 'isProfileCompleted');
-
         if ($this->session->member_id != "" && $isProfileCompleted == 0) {
             $this->load->view('front/package_payment/profile_detail', $page_data);
         } else {
